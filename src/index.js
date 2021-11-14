@@ -12,6 +12,7 @@ searchBoxRef.addEventListener('input', debounce(onCheckInput, DEBOUNCE_DELAY));
 function onCheckInput(e) {
   const userInput = e.target.value.trim();
   if (userInput === '') {
+    clearMarkup();
     return;
   }
   fetchArticles(userInput)
@@ -21,9 +22,9 @@ function onCheckInput(e) {
 function verificationData(countries) {
   if (countries.length > 10) {
     return Notify.info('Too many matches found. Please enter a more specific name.');
-  } else if (countries.length <= 10) {
+  } else if (countries.length >= 2 && countries.length <= 10) {
     return (countryListRef.innerHTML = countries.map(itemsMurcup).join(''));
-  } else {
+  } else if (countries.length === 1) {
     return cardMurcup(countries);
   }
 }
@@ -48,4 +49,8 @@ function cardMurcup(name, capital, population, flags, languages) {
       <li class='list-group-item'>Capital: ${capital}</li>
     </ul>
   </div>`);
+}
+function clearMarkup() {
+  refs.countryList.innerHTML = '';
+  refs.countryCard.innerHTML = '';
 }
