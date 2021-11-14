@@ -15,9 +15,7 @@ function onCheckInput(e) {
     clearMarkup();
     return;
   }
-  fetchArticles(userInput)
-    .then(verificationData)
-    .catch(Notify.failure('Oops, there is no country with that name'));
+  fetchArticles(userInput).then(verificationData).catchcatch(Notify.failure);
 }
 function verificationData(countries) {
   if (countries.length > 10) {
@@ -39,9 +37,9 @@ function itemsMurcup({ name, flags }) {
 
 function cardMurcup(name, capital, population, flags, languages) {
   return (countryListRef.innerHTML = `<article class='card animate__animated animate__fadeInUp' style="width: 18rem">
-  <img src='${flags.svg}' alt='flags ${name.official}' width="100px" class='card-img' />
-  <div class=''>
-    <h2 class='card-title'>${name.official}}</h2>
+  <img src="${flags.svg}" alt='flags ${name}' width="100px" class='card-img' />
+  <div class=''>"
+    <h2 class='card-title'>${name}}</h2>
     <ul class=''>
       <li class='list-group-item'>Population: ${population}</li>
       <li class='list-group-item'>Languages: 

@@ -4,7 +4,7 @@ export function fetchArticles(country) {
   const url = `${BASE_URL}${country}${FILTER_SETTINGS}`;
   return fetch(url).then(response => {
     if (!response.ok) {
-      throw Error('Oops, there is no country with that name');
+      return Promise.reject('Oops, there is no country with that name');
     }
     return response.json();
   });
