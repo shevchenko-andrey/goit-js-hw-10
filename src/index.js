@@ -8,6 +8,7 @@ const DEBOUNCE_DELAY = 300;
 
 const searchBoxRef = document.querySelector('#search-box');
 const countryListRef = document.querySelector('.country-list');
+const countryInfoRef = document.querySelector('.country-info');
 searchBoxRef.addEventListener('input', debounce(onCheckInput, DEBOUNCE_DELAY));
 function onCheckInput(e) {
   const userInput = e.target.value.trim();
@@ -20,6 +21,8 @@ function onCheckInput(e) {
 function verificationData(countries) {
   if (countries.length > 10) {
     return Notify.info('Too many matches found. Please enter a more specific name.');
+  } else if (countries.length === 0) {
+    return catchcatch(Notify.failure);
   } else if (countries.length >= 2 && countries.length <= 10) {
     return (countryListRef.innerHTML = countries.map(itemsMurcup).join(''));
   } else if (countries.length === 1) {
@@ -49,6 +52,6 @@ function cardMurcup(name, capital, population, flags, languages) {
   </div>`);
 }
 function clearMarkup() {
-  refs.countryList.innerHTML = '';
-  refs.countryCard.innerHTML = '';
+  refs.countryListRef.innerHTML = '';
+  refs.countryInfoRef.innerHTML = '';
 }
