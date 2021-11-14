@@ -38,7 +38,7 @@ function itemsMurcup({ name, flags }) {
 
 function cardMurcup(name, capital, population, flags, languages) {
   return (countryListRef.innerHTML = `<article class='card animate__animated animate__fadeInUp' style="width: 18rem">
-  <img src='${flags.svg}' alt='flags ${name.official}}' width="100px" class='card-img' />
+  <img src='${flags.svg}' alt='flags ${name.official}' width="100px" class='card-img' />
   <div class=''>
     <h2 class='card-title'>${name.official}}</h2>
     <ul class=''>
